@@ -65,22 +65,22 @@ function search(searchInfo) {
     let searchCollection = [];
     if (searchInfo === undefined) {
         return collection;
-    }
-    for (let i of collection) {
-        if (i.hasOwnProperty("tracks")) {
-            for (z = 0; z < i.tracks.length; z++) {
-                if (i.tracks[z].name === searchInfo) {
-                    searchCollection.push(i);
-                    return searchCollection;
+    } 
+    if (searchInfo.hasOwnProperty("tracksName")) {
+            for (let i of collection) {
+                for (let z = 0; z < i.tracks.length; z++) {
+                    if (i.tracks[z].name === searchInfo.tracksName) {
+                        searchCollection.push(i);
+                    }
                 }
             }
-        }
-    }
-    for (let i = 0; i<collection.length; i++) {
-        if (searchInfo.artist === collection[i].artist && searchInfo.yearPublished === collection[i].yearPublished) {
-            searchCollection.push(collection[i]);
+    } else {
+        for (let i of collection) {
+        if (searchInfo.artist === i.artist && searchInfo.yearPublished === i.yearPublished) {
+            searchCollection.push(i);
         } 
     }
+}
 return searchCollection
 }
 
@@ -89,6 +89,6 @@ console.log(search({ artist: 'Ray Charles', yearPublished: 1957}))
 console.log(search({ artist: 'SZA', yearPublished: 2017}))
 console.log(search({ artist: 'SZA', yearPublished: 2020}))
 console.log(search())
-console.log(search("Palette"))
-console.log(search({ artist: 'Ray Charles', year: 1957, tracks: {name: "Ivy", duration: "4:09"}}))
+console.log(search({ tracksName: "Ivy"}))
+console.log(search({ artist: 'SZA', yearPublished: 2017, tracksName: "Ivy"}))
 // I only added three tracks per album because it would be too cluttered with all the songs
