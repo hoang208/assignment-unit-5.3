@@ -66,10 +66,10 @@ function search(searchInfo) {
     if (searchInfo === undefined) {
         return collection;
     } 
-    if (searchInfo.hasOwnProperty("tracksName")) {
+    if (searchInfo.hasOwnProperty("trackName")) {
             for (let i of collection) {
                 for (let z = 0; z < i.tracks.length; z++) {
-                    if (i.tracks[z].name === searchInfo.tracksName) {
+                    if (i.tracks[z].name === searchInfo.trackName) {
                         searchCollection.push(i);
                     }
                 }
@@ -89,6 +89,6 @@ console.log(search({ artist: 'Ray Charles', yearPublished: 1957}))
 console.log(search({ artist: 'SZA', yearPublished: 2017}))
 console.log(search({ artist: 'SZA', yearPublished: 2020}))
 console.log(search())
-console.log(search({ tracksName: "Ivy"}))
-console.log(search({ artist: 'SZA', yearPublished: 2017, tracksName: "Ivy"}))
+console.log(search({ trackName: "Ivy"}))
+console.log(search({ artist: 'SZA', yearPublished: 2017, trackName: "Ivy"}))
 // I only added three tracks per album because it would be too cluttered with all the songs
